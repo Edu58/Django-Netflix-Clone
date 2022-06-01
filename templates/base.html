@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock styles %}
 
+    <link rel="icon" type="image/png" href="{% static 'images/Netflix.png' %}">
+
     <title>
         {% block title %}
 
@@ -21,8 +23,7 @@
 <body>
 <!-- nav -->
 <div id="nav" class="nav">
-    <img class="nav__logo" src="images/netflix-logo.png" alt=""/>
-    <img class="nav__avatar" src="images/netflix-avatar.png" alt=""/>
+    <img class="nav__logo img-fluid" src="{% static 'images/Netflix.png' %}" alt=""/>
 </div>
 
 
@@ -32,6 +33,10 @@
 
 {% block scripts %}
 {% bootstrap_javascript %}
+<script src="https://kit.fontawesome.com/aee799c668.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 {% endblock scripts %}
 
 <footer>
