@@ -9,15 +9,22 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {% block styles %}
     {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock styles %}
 
     <title>
         {% block title %}
-        
+
         {% endblock %}
     </title>
 </head>
 <body>
+<!-- nav -->
+<div id="nav" class="nav">
+    <img class="nav__logo" src="images/netflix-logo.png" alt=""/>
+    <img class="nav__avatar" src="images/netflix-avatar.png" alt=""/>
+</div>
+
 
 {% block content %}
 
@@ -26,5 +33,10 @@
 {% block scripts %}
 {% bootstrap_javascript %}
 {% endblock scripts %}
+
+<footer>
+    <small>This product uses the TMDB API but is not endorsed or certified by TMDB</small>
+    <small>Copyright &copy; 2022 Edwin Karimi</small>
+</footer>
 </body>
 </html>

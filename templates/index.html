@@ -7,209 +7,107 @@
 {% endblock styles %}
 
 {% block title %}
-     Netflix Clone   
+Netflix Clone
 {% endblock %}
 
 {% block content %}
-<!-- nav -->
-<div id="nav" class="nav">
-    <img class="nav__logo" src="images/netflix-logo.png" alt="" />
-    <img class="nav__avatar" src="images/netflix-avatar.png" alt="" />
-  </div>
-
-  <!-- header -->
-  <header class="banner">
+<!-- header -->
+<header class="banner" style="background-image: url('https://image.tmdb.org/t/p/original{{ banner.backdrop_path }}')">
     <div class="banner__contents">
-      <h1 class="banner__title">Money Heist</h1>
-      <div class="banner__buttons">
-        <button class="banner__button">Play</button>
-        <button class="banner__button">My List</button>
-      </div>
-      <h1 class="banner__description">
-        To carry out the biggest heist in history, a mysterious man called The Professor recruits
-        a band of eight robbers who have a single characteristic: n...
-      </h1>
+        <h1 class="banner__title">{{ banner.original_title }}</h1>
+        <div class="banner__buttons">
+            <button class="banner__button">Play</button>
+            <button class="banner__button">My List</button>
+        </div>
+        <h1 class="banner__description">
+            {{ banner.overview }}
+        </h1>
     </div>
     <div class="banner--fadeBottom"></div>
-  </header>
+</header>
 
-  <!-- Netflix Originals -->
-  <div class="row">
-    <h2>NETFLIX ORIGINALS</h2>
-    <div class="row__posters">
-      <img class="row__poster row__posterLarge" src="images/large-movie1.jpg" alt="" />
+<!--  &lt;!&ndash; Netflix Originals &ndash;&gt;-->
+<!--  <div class="row">-->
+<!--    <h2>NETFLIX ORIGINALS</h2>-->
+<!--    <div class="row__posters">-->
+<!--      <img class="row__poster row__posterLarge" src="images/large-movie1.jpg" alt="" />-->
 
-      <img class="row__poster row__posterLarge" src="images/large-movie2.jpg" alt="" />
+<!--      <img class="row__poster row__posterLarge" src="images/large-movie2.jpg" alt="" />-->
 
-      <img class="row__poster row__posterLarge" src="images/large-movie3.jpg" alt="" />
+<!--      <img class="row__poster row__posterLarge" src="images/large-movie3.jpg" alt="" />-->
 
-      <img class="row__poster row__posterLarge" src="images/large-movie4.jpg" alt="" />
+<!--      <img class="row__poster row__posterLarge" src="images/large-movie4.jpg" alt="" />-->
 
-      <img class="row__poster row__posterLarge" src="images/large-movie5.jpg" alt="" />
+<!--      <img class="row__poster row__posterLarge" src="images/large-movie5.jpg" alt="" />-->
 
-      <img class="row__poster row__posterLarge" src="images/large-movie6.jpg" alt="" />
+<!--      <img class="row__poster row__posterLarge" src="images/large-movie6.jpg" alt="" />-->
 
-      <img class="row__poster row__posterLarge" src="images/large-movie7.jpg" alt="" />
+<!--      <img class="row__poster row__posterLarge" src="images/large-movie7.jpg" alt="" />-->
 
-      <img class="row__poster row__posterLarge" src="images/large-movie8.jpg" alt="" />
+<!--      <img class="row__poster row__posterLarge" src="images/large-movie8.jpg" alt="" />-->
+<!--    </div>-->
+<!--  </div>-->
+
+<section class="movies">
+    <div>
+        <h2>Trending</h2>
+        <div class="movies-row" id="trending">
+            {% for movie in trending %}
+            <img class="row__poster" src="https://image.tmdb.org/t/p/original{{movie.poster_path}}"
+                 alt="{{movie.original_title}}"/>
+            {% endfor %}
+        </div>
+
+        <h2>Top Rated</h2>
+        <div class="movies-row" id="top-rated">
+            {% for movie in top_rated %}
+            <img class="row__poster" src="https://image.tmdb.org/t/p/original{{movie.poster_path}}"
+                 alt="{{movie.original_title}}"/>
+            {% endfor %}
+        </div>
+
+        <h2>Action</h2>
+        <div class="movies-row" id="action">
+            {% for movie in action %}
+            <img class="row__poster" src="https://image.tmdb.org/t/p/original{{movie.poster_path}}"
+                 alt="{{movie.original_title}}"/>
+            {% endfor %}
+        </div>
+
+        <h2>Comedy</h2>
+        <div class="movies-row" id="science">
+            {% for movie in comedy %}
+            <img class="row__poster" src="https://image.tmdb.org/t/p/original{{movie.poster_path}}"
+                 alt="{{movie.original_title}}"/>
+            {% endfor %}
+        </div>
+
+        <h2>Crime</h2>
+        <div class="movies-row" id="animation">
+            {% for movie in crime %}
+            <img class="row__poster" src="https://image.tmdb.org/t/p/original{{movie.poster_path}}"
+                 alt="{{movie.original_title}}"/>
+            {% endfor %}
+        </div>
+
+        <h2>Fantasy</h2>
+        <div class="movies-row" id="comedy">
+            {% for movie in fantasy %}
+            <img class="row__poster" src="https://image.tmdb.org/t/p/original{{movie.poster_path}}"
+                 alt="{{movie.original_title}}"/>
+            {% endfor %}
+        </div>
+        <h2>Documentary</h2>
+        <div class="movies-row" id="documentary">
+            {% for movie in documentary %}
+            <img class="row__poster" src="https://image.tmdb.org/t/p/original{{movie.poster_path}}"
+                 alt="{{movie.original_title}}"/>
+            {% endfor %}
+        </div>
     </div>
-  </div>
+</section>
 
-  <!-- Trending Now -->
-  <div class="row">
-    <h2>Trending Now</h2>
-    <div class="row__posters">
-      <img class="row__poster" src="images/small-movie1.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie2.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie3.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie4.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie5.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie6.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie7.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie8.jpg" alt="" />
-    </div>
-  </div>
-
-  <!-- Top Rated -->
-  <div class="row">
-    <h2>Top Rated</h2>
-    <div class="row__posters">
-      <img class="row__poster" src="images/small-movie1.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie2.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie3.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie4.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie5.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie6.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie7.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie8.jpg" alt="" />
-    </div>
-  </div>
-
-  <!-- Action Movies -->
-  <div class="row">
-    <h2>Action Movies</h2>
-    <div class="row__posters">
-      <img class="row__poster" src="images/small-movie1.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie2.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie3.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie4.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie5.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie6.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie7.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie8.jpg" alt="" />
-    </div>
-  </div>
-
-  <!-- Comedy Movies -->
-  <div class="row">
-    <h2>Comedy Movies</h2>
-    <div class="row__posters">
-      <img class="row__poster" src="images/small-movie1.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie2.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie3.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie4.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie5.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie6.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie7.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie8.jpg" alt="" />
-    </div>
-  </div>
-
-  <!-- Horror Movies -->
-  <div class="row">
-    <h2>Horror Movies</h2>
-    <div class="row__posters">
-      <img class="row__poster" src="images/small-movie1.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie2.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie3.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie4.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie5.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie6.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie7.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie8.jpg" alt="" />
-    </div>
-  </div>
-
-  <!-- Romance Movies -->
-  <div class="row">
-    <h2>Romance Movies</h2>
-    <div class="row__posters">
-      <img class="row__poster" src="images/small-movie1.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie2.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie3.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie4.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie5.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie6.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie7.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie8.jpg" alt="" />
-    </div>
-  </div>
-
-  <!-- Documentaries -->
-  <div class="row">
-    <h2>Documentaries</h2>
-    <div class="row__posters">
-      <img class="row__poster" src="images/small-movie1.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie2.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie3.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie4.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie5.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie6.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie7.jpg" alt="" />
-
-      <img class="row__poster" src="images/small-movie8.jpg" alt="" />
-    </div>
-  </div>
-
-  <script>
+<script>
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
       if (window.scrollY >= 100) {
@@ -218,5 +116,8 @@
         nav.classList.remove('nav__black');
       }
     });
-  </script>
+
+
+
+</script>
 {% endblock %}
