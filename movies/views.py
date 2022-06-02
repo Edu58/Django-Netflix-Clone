@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .apis import get_movie, get_trending, get_top_rated, get_genre
+from .apis import get_movie, get_trending, get_top_rated, get_genre, get_video
 import random
 
 
@@ -10,7 +10,6 @@ def home(request):
     random_movie = random.randrange(0, 11)
     banner = movie['results'][random_movie]
     trending = movie['results']
-
     # top_rated
     top_rated = get_top_rated()
 
@@ -41,3 +40,11 @@ def home(request):
                       'fantasy': fantasy['items'],
                       'documentary': documentary['items'],
                   })
+
+
+def play(request, movie_id):
+    data = get_video(movie_id)
+    video_info = data['results'][0]
+    youtube_url = f"www.youtube.com/watch?v={video_info['key']}"
+
+    return render(request, 'play.html', {'url': youtube_url})

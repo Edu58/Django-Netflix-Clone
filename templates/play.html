@@ -1,0 +1,14 @@
+{%extends 'base.html'%}
+{% load static %}
+{% load embed_video_tags %}
+
+{% block title %}
+Play
+{% endblock %}
+
+{% block content %}
+<p class="fs-2 text-light text-center" style="margin-top: 4%;">{{ title }}</p>
+<div class="container text-center d-flex justify-content-center align-items-center min-vh-100">
+    {% video url 'large' %}
+</div>
+{% endblock content %}

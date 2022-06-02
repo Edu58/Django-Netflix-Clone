@@ -16,14 +16,18 @@ Netflix Clone
     <div class="banner__contents">
         <h1 class="banner__title">{{ banner.original_title }}</h1>
         <div class="banner__buttons">
-            <button class="banner__button bg-danger">
-                <i class="fa-solid fa-play"></i>
-                Play
-            </button>
-            <button class="banner__button">
-                <i class="fa-solid fa-plus"></i>
-                My List
-            </button>
+            <a href="{% url 'play' banner.id %}">
+                <button class="banner__button bg-danger" type="button">
+                    <i class="fa-solid fa-play"></i>
+                    Play
+                </button>
+            </a>
+            <a href="">
+                <button class="banner__button" type="button">
+                    <i class="fa-solid fa-plus"></i>
+                    My List
+                </button>
+            </a>
         </div>
         <h1 class="banner__description">
             {{ banner.overview }}
@@ -32,28 +36,6 @@ Netflix Clone
     <div class="banner--fadeBottom"></div>
 </header>
 
-<!--  &lt;!&ndash; Netflix Originals &ndash;&gt;-->
-<!--  <div class="row">-->
-<!--    <h2>NETFLIX ORIGINALS</h2>-->
-<!--    <div class="row__posters">-->
-<!--      <img class="row__poster row__posterLarge" src="images/large-movie1.jpg" alt="" />-->
-
-<!--      <img class="row__poster row__posterLarge" src="images/large-movie2.jpg" alt="" />-->
-
-<!--      <img class="row__poster row__posterLarge" src="images/large-movie3.jpg" alt="" />-->
-
-<!--      <img class="row__poster row__posterLarge" src="images/large-movie4.jpg" alt="" />-->
-
-<!--      <img class="row__poster row__posterLarge" src="images/large-movie5.jpg" alt="" />-->
-
-<!--      <img class="row__poster row__posterLarge" src="images/large-movie6.jpg" alt="" />-->
-
-<!--      <img class="row__poster row__posterLarge" src="images/large-movie7.jpg" alt="" />-->
-
-<!--      <img class="row__poster row__posterLarge" src="images/large-movie8.jpg" alt="" />-->
-<!--    </div>-->
-<!--  </div>-->
-
 <section class="movies">
     <div>
         <h2>Trending</h2>
@@ -61,35 +43,43 @@ Netflix Clone
             {% for movie in trending %}
             <div class="poster position-relative">
                 <img class="row__poster" src="https://image.tmdb.org/t/p/original{{movie.poster_path}}"
-                 alt="{{movie.original_title}}"/>
-                 <div class="details position-absolute" id="details">
-                    <button type="button" class="btn text-light" data-bs-toggle="modal" data-bs-target="#exampleModal{{ movie.id }}">
+                     alt="{{movie.original_title}}"/>
+                <div class="details position-absolute" id="details">
+                    <button type="button" class="btn text-light" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal{{ movie.id }}">
                         <i class="fa-solid fa-circle-play text-danger fs-2"></i>
                     </button>
                 </div>
             </div>
 
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal{{ movie.id  }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="exampleModal{{ movie.id  }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
                 <div class="modal-dialog modal-fullscreen">
-                    <div class="modal-content" style="background-image:linear-gradient(90deg, rgb(15, 15, 15), rgba(32, 32, 32, 0.959), rgba(255, 255, 255, 0)), url('https://image.tmdb.org/t/p/original{{ movie.backdrop_path }}');">
+                    <div class="modal-content"
+                         style="background-image:linear-gradient(90deg, rgb(15, 15, 15), rgba(32, 32, 32, 0.959), rgba(255, 255, 255, 0)), url('https://image.tmdb.org/t/p/original{{ movie.backdrop_path }}');">
                         <div class="modal-body">
                             {{ image.description }}
-                            
+
                             <div style="margin-top: 10%;">
                                 <div class="w-50 text-light">
                                     <p class="fs-2">{{ movie.original_title }}</p>
-                                    <p class="fw-light">{{ movie.release_date }} <span class="ms-2">{{movie.media_type | title }}</span></p>
+                                    <p class="fw-light">{{ movie.release_date }} <span class="ms-2">{{movie.media_type | title }}</span>
+                                    </p>
                                     <p>{{ movie.overview }}</p>
                                     <div class="banner__buttons">
-                                        <button class="banner__button bg-danger">
-                                            <i class="fa-solid fa-play"></i>
-                                            Play
-                                        </button>
-                                        <button class="banner__button">
-                                            <i class="fa-solid fa-plus"></i>
-                                            My List
-                                        </button>
+                                        <a href="{% url 'play' movie.id %}">
+                                            <button class="banner__button bg-danger" type="button">
+                                                <i class="fa-solid fa-play"></i>
+                                                Play
+                                            </button>
+                                        </a>
+                                        <a href="">
+                                            <button class="banner__button" type="button">
+                                                <i class="fa-solid fa-plus"></i>
+                                                My List
+                                            </button>
+                                        </a>
                                     </div>
                                     <div class="mt-3 d-flex flex-column">
                                         <p>Rating: {{ movie.vote_average }}</p>
@@ -99,47 +89,55 @@ Netflix Clone
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn banner__button" data-bs-dismiss="modal">Close</button>
-                          </div>
+                        </div>
                     </div>
                 </div>
             </div>
             {% endfor %}
         </div>
-
+        
         <h2>Top Rated</h2>
         <div class="movies-row" id="top-rated">
             {% for movie in top_rated %}
             <div class="poster position-relative">
                 <img class="row__poster" src="https://image.tmdb.org/t/p/original{{movie.poster_path}}"
-                 alt="{{movie.original_title}}"/>
-                 <div class="details position-absolute" id="details">
-                    <button type="button" class="btn text-light" data-bs-toggle="modal" data-bs-target="#exampleModal{{ movie.id }}">
+                     alt="{{movie.original_title}}"/>
+                <div class="details position-absolute" id="details">
+                    <button type="button" class="btn text-light" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal{{ movie.id }}">
                         <i class="fa-solid fa-circle-play text-danger fs-2"></i>
                     </button>
                 </div>
             </div>
 
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal{{ movie.id  }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="exampleModal{{ movie.id  }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
                 <div class="modal-dialog modal-fullscreen">
-                    <div class="modal-content" style="background-image:linear-gradient(90deg, rgb(15, 15, 15), rgba(32, 32, 32, 0.959), rgba(255, 255, 255, 0)), url('https://image.tmdb.org/t/p/original{{ movie.backdrop_path }}');">
+                    <div class="modal-content"
+                         style="background-image:linear-gradient(90deg, rgb(15, 15, 15), rgba(32, 32, 32, 0.959), rgba(255, 255, 255, 0)), url('https://image.tmdb.org/t/p/original{{ movie.backdrop_path }}');">
                         <div class="modal-body">
                             {{ image.description }}
-                            
+
                             <div style="margin-top: 10%;">
                                 <div class="w-50 text-light">
                                     <p class="fs-2">{{ movie.original_title }}</p>
-                                    <p class="fw-light">{{ movie.release_date }} <span class="ms-2">{{movie.media_type | title }}</span></p>
+                                    <p class="fw-light">{{ movie.release_date }} <span class="ms-2">{{movie.media_type | title }}</span>
+                                    </p>
                                     <p>{{ movie.overview }}</p>
                                     <div class="banner__buttons">
-                                        <button class="banner__button bg-danger">
-                                            <i class="fa-solid fa-play"></i>
-                                            Play
-                                        </button>
-                                        <button class="banner__button">
-                                            <i class="fa-solid fa-plus"></i>
-                                            My List
-                                        </button>
+                                        <a href="{% url 'play' movie.id %}">
+                                            <button class="banner__button bg-danger" type="button">
+                                                <i class="fa-solid fa-play"></i>
+                                                Play
+                                            </button>
+                                        </a>
+                                        <a href="">
+                                            <button class="banner__button" type="button">
+                                                <i class="fa-solid fa-plus"></i>
+                                                My List
+                                            </button>
+                                        </a>
                                     </div>
                                     <div class="mt-3 d-flex flex-column">
                                         <p>Rating: {{ movie.vote_average }}</p>
@@ -149,7 +147,7 @@ Netflix Clone
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn banner__button" data-bs-dismiss="modal">Close</button>
-                          </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -161,35 +159,43 @@ Netflix Clone
             {% for movie in action %}
             <div class="poster position-relative">
                 <img class="row__poster" src="https://image.tmdb.org/t/p/original{{movie.poster_path}}"
-                 alt="{{movie.original_title}}"/>
-                 <div class="details position-absolute" id="details">
-                    <button type="button" class="btn text-light" data-bs-toggle="modal" data-bs-target="#exampleModal{{ movie.id }}">
+                     alt="{{movie.original_title}}"/>
+                <div class="details position-absolute" id="details">
+                    <button type="button" class="btn text-light" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal{{ movie.id }}">
                         <i class="fa-solid fa-circle-play text-danger fs-2"></i>
                     </button>
                 </div>
             </div>
 
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal{{ movie.id  }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="exampleModal{{ movie.id  }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
                 <div class="modal-dialog modal-fullscreen">
-                    <div class="modal-content" style="background-image:linear-gradient(90deg, rgb(15, 15, 15), rgba(32, 32, 32, 0.959), rgba(255, 255, 255, 0)), url('https://image.tmdb.org/t/p/original{{ movie.backdrop_path }}');">
+                    <div class="modal-content"
+                         style="background-image:linear-gradient(90deg, rgb(15, 15, 15), rgba(32, 32, 32, 0.959), rgba(255, 255, 255, 0)), url('https://image.tmdb.org/t/p/original{{ movie.backdrop_path }}');">
                         <div class="modal-body">
                             {{ image.description }}
-                            
+
                             <div style="margin-top: 10%;">
                                 <div class="w-50 text-light">
                                     <p class="fs-2">{{ movie.original_title }}</p>
-                                    <p class="fw-light">{{ movie.release_date }} <span class="ms-2">{{movie.media_type | title }}</span></p>
+                                    <p class="fw-light">{{ movie.release_date }} <span class="ms-2">{{movie.media_type | title }}</span>
+                                    </p>
                                     <p>{{ movie.overview }}</p>
                                     <div class="banner__buttons">
-                                        <button class="banner__button bg-danger">
-                                            <i class="fa-solid fa-play"></i>
-                                            Play
-                                        </button>
-                                        <button class="banner__button">
-                                            <i class="fa-solid fa-plus"></i>
-                                            My List
-                                        </button>
+                                        <a href="{% url 'play' movie.id %}">
+                                            <button class="banner__button bg-danger" type="button">
+                                                <i class="fa-solid fa-play"></i>
+                                                Play
+                                            </button>
+                                        </a>
+                                        <a href="">
+                                            <button class="banner__button" type="button">
+                                                <i class="fa-solid fa-plus"></i>
+                                                My List
+                                            </button>
+                                        </a>
                                     </div>
                                     <div class="mt-3 d-flex flex-column">
                                         <p>Rating: {{ movie.vote_average }}</p>
@@ -199,7 +205,7 @@ Netflix Clone
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn banner__button" data-bs-dismiss="modal">Close</button>
-                          </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -211,35 +217,43 @@ Netflix Clone
             {% for movie in comedy %}
             <div class="poster position-relative">
                 <img class="row__poster" src="https://image.tmdb.org/t/p/original{{movie.poster_path}}"
-                 alt="{{movie.original_title}}"/>
-                 <div class="details position-absolute" id="details">
-                    <button type="button" class="btn text-light" data-bs-toggle="modal" data-bs-target="#exampleModal{{ movie.id }}">
+                     alt="{{movie.original_title}}"/>
+                <div class="details position-absolute" id="details">
+                    <button type="button" class="btn text-light" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal{{ movie.id }}">
                         <i class="fa-solid fa-circle-play text-danger fs-2"></i>
                     </button>
                 </div>
             </div>
 
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal{{ movie.id  }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="exampleModal{{ movie.id  }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
                 <div class="modal-dialog modal-fullscreen">
-                    <div class="modal-content" style="background-image:linear-gradient(90deg, rgb(15, 15, 15), rgba(32, 32, 32, 0.959), rgba(255, 255, 255, 0)), url('https://image.tmdb.org/t/p/original{{ movie.backdrop_path }}');">
+                    <div class="modal-content"
+                         style="background-image:linear-gradient(90deg, rgb(15, 15, 15), rgba(32, 32, 32, 0.959), rgba(255, 255, 255, 0)), url('https://image.tmdb.org/t/p/original{{ movie.backdrop_path }}');">
                         <div class="modal-body">
                             {{ image.description }}
-                            
+
                             <div style="margin-top: 10%;">
                                 <div class="w-50 text-light">
                                     <p class="fs-2">{{ movie.original_title }}</p>
-                                    <p class="fw-light">{{ movie.release_date }} <span class="ms-2">{{movie.media_type | title }}</span></p>
+                                    <p class="fw-light">{{ movie.release_date }} <span class="ms-2">{{movie.media_type | title }}</span>
+                                    </p>
                                     <p>{{ movie.overview }}</p>
                                     <div class="banner__buttons">
-                                        <button class="banner__button bg-danger">
-                                            <i class="fa-solid fa-play"></i>
-                                            Play
-                                        </button>
-                                        <button class="banner__button">
-                                            <i class="fa-solid fa-plus"></i>
-                                            My List
-                                        </button>
+                                        <a href="{% url 'play' movie.id %}">
+                                            <button class="banner__button bg-danger" type="button">
+                                                <i class="fa-solid fa-play"></i>
+                                                Play
+                                            </button>
+                                        </a>
+                                        <a href="">
+                                            <button class="banner__button" type="button">
+                                                <i class="fa-solid fa-plus"></i>
+                                                My List
+                                            </button>
+                                        </a>
                                     </div>
                                     <div class="mt-3 d-flex flex-column">
                                         <p>Rating: {{ movie.vote_average }}</p>
@@ -249,7 +263,7 @@ Netflix Clone
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn banner__button" data-bs-dismiss="modal">Close</button>
-                          </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -261,35 +275,43 @@ Netflix Clone
             {% for movie in crime %}
             <div class="poster position-relative">
                 <img class="row__poster" src="https://image.tmdb.org/t/p/original{{movie.poster_path}}"
-                 alt="{{movie.original_title}}"/>
-                 <div class="details position-absolute" id="details">
-                    <button type="button" class="btn text-light" data-bs-toggle="modal" data-bs-target="#exampleModal{{ movie.id }}">
+                     alt="{{movie.original_title}}"/>
+                <div class="details position-absolute" id="details">
+                    <button type="button" class="btn text-light" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal{{ movie.id }}">
                         <i class="fa-solid fa-circle-play text-danger fs-2"></i>
                     </button>
                 </div>
             </div>
 
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal{{ movie.id  }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="exampleModal{{ movie.id  }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
                 <div class="modal-dialog modal-fullscreen">
-                    <div class="modal-content" style="background-image:linear-gradient(90deg, rgb(15, 15, 15), rgba(32, 32, 32, 0.959), rgba(255, 255, 255, 0)), url('https://image.tmdb.org/t/p/original{{ movie.backdrop_path }}');">
+                    <div class="modal-content"
+                         style="background-image:linear-gradient(90deg, rgb(15, 15, 15), rgba(32, 32, 32, 0.959), rgba(255, 255, 255, 0)), url('https://image.tmdb.org/t/p/original{{ movie.backdrop_path }}');">
                         <div class="modal-body">
                             {{ image.description }}
-                            
+
                             <div style="margin-top: 10%;">
                                 <div class="w-50 text-light">
                                     <p class="fs-2">{{ movie.original_title }}</p>
-                                    <p class="fw-light">{{ movie.release_date }} <span class="ms-2">{{movie.media_type | title }}</span></p>
+                                    <p class="fw-light">{{ movie.release_date }} <span class="ms-2">{{movie.media_type | title }}</span>
+                                    </p>
                                     <p>{{ movie.overview }}</p>
                                     <div class="banner__buttons">
-                                        <button class="banner__button bg-danger">
-                                            <i class="fa-solid fa-play"></i>
-                                            Play
-                                        </button>
-                                        <button class="banner__button">
-                                            <i class="fa-solid fa-plus"></i>
-                                            My List
-                                        </button>
+                                        <a href="{% url 'play' movie.id %}">
+                                            <button class="banner__button bg-danger" type="button">
+                                                <i class="fa-solid fa-play"></i>
+                                                Play
+                                            </button>
+                                        </a>
+                                        <a href="">
+                                            <button class="banner__button" type="button">
+                                                <i class="fa-solid fa-plus"></i>
+                                                My List
+                                            </button>
+                                        </a>
                                     </div>
                                     <div class="mt-3 d-flex flex-column">
                                         <p>Rating: {{ movie.vote_average }}</p>
@@ -299,7 +321,7 @@ Netflix Clone
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn banner__button" data-bs-dismiss="modal">Close</button>
-                          </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -311,35 +333,43 @@ Netflix Clone
             {% for movie in fantasy %}
             <div class="poster position-relative">
                 <img class="row__poster" src="https://image.tmdb.org/t/p/original{{movie.poster_path}}"
-                 alt="{{movie.original_title}}"/>
-                 <div class="details position-absolute" id="details">
-                    <button type="button" class="btn text-light" data-bs-toggle="modal" data-bs-target="#exampleModal{{ movie.id }}">
+                     alt="{{movie.original_title}}"/>
+                <div class="details position-absolute" id="details">
+                    <button type="button" class="btn text-light" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal{{ movie.id }}">
                         <i class="fa-solid fa-circle-play text-danger fs-2"></i>
                     </button>
                 </div>
             </div>
 
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal{{ movie.id  }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="exampleModal{{ movie.id  }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
                 <div class="modal-dialog modal-fullscreen">
-                    <div class="modal-content" style="background-image:linear-gradient(90deg, rgb(15, 15, 15), rgba(32, 32, 32, 0.959), rgba(255, 255, 255, 0)), url('https://image.tmdb.org/t/p/original{{ movie.backdrop_path }}');">
+                    <div class="modal-content"
+                         style="background-image:linear-gradient(90deg, rgb(15, 15, 15), rgba(32, 32, 32, 0.959), rgba(255, 255, 255, 0)), url('https://image.tmdb.org/t/p/original{{ movie.backdrop_path }}');">
                         <div class="modal-body">
                             {{ image.description }}
-                            
+
                             <div style="margin-top: 10%;">
                                 <div class="w-50 text-light">
                                     <p class="fs-2">{{ movie.original_title }}</p>
-                                    <p class="fw-light">{{ movie.release_date }} <span class="ms-2">{{movie.media_type | title }}</span></p>
+                                    <p class="fw-light">{{ movie.release_date }} <span class="ms-2">{{movie.media_type | title }}</span>
+                                    </p>
                                     <p>{{ movie.overview }}</p>
                                     <div class="banner__buttons">
-                                        <button class="banner__button bg-danger">
-                                            <i class="fa-solid fa-play"></i>
-                                            Play
-                                        </button>
-                                        <button class="banner__button">
-                                            <i class="fa-solid fa-plus"></i>
-                                            My List
-                                        </button>
+                                        <a href="{% url 'play' movie.id %}">
+                                            <button class="banner__button bg-danger" type="button">
+                                                <i class="fa-solid fa-play"></i>
+                                                Play
+                                            </button>
+                                        </a>
+                                        <a href="">
+                                            <button class="banner__button" type="button">
+                                                <i class="fa-solid fa-plus"></i>
+                                                My List
+                                            </button>
+                                        </a>
                                     </div>
                                     <div class="mt-3 d-flex flex-column">
                                         <p>Rating: {{ movie.vote_average }}</p>
@@ -349,7 +379,7 @@ Netflix Clone
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn banner__button" data-bs-dismiss="modal">Close</button>
-                          </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -360,35 +390,43 @@ Netflix Clone
             {% for movie in documentary %}
             <div class="poster position-relative">
                 <img class="row__poster" src="https://image.tmdb.org/t/p/original{{movie.poster_path}}"
-                 alt="{{movie.original_title}}"/>
-                 <div class="details position-absolute" id="details">
-                    <button type="button" class="btn text-light" data-bs-toggle="modal" data-bs-target="#exampleModal{{ movie.id }}">
+                     alt="{{movie.original_title}}"/>
+                <div class="details position-absolute" id="details">
+                    <button type="button" class="btn text-light" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal{{ movie.id }}">
                         <i class="fa-solid fa-circle-play text-danger fs-2"></i>
                     </button>
                 </div>
             </div>
 
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal{{ movie.id  }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="exampleModal{{ movie.id  }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
                 <div class="modal-dialog modal-fullscreen">
-                    <div class="modal-content" style="background-image:linear-gradient(90deg, rgb(15, 15, 15), rgba(32, 32, 32, 0.959), rgba(255, 255, 255, 0)), url('https://image.tmdb.org/t/p/original{{ movie.backdrop_path }}');">
+                    <div class="modal-content"
+                         style="background-image:linear-gradient(90deg, rgb(15, 15, 15), rgba(32, 32, 32, 0.959), rgba(255, 255, 255, 0)), url('https://image.tmdb.org/t/p/original{{ movie.backdrop_path }}');">
                         <div class="modal-body">
                             {{ image.description }}
-                            
+
                             <div style="margin-top: 10%;">
                                 <div class="w-50 text-light">
                                     <p class="fs-2">{{ movie.original_title }}</p>
-                                    <p class="fw-light">{{ movie.release_date }} <span class="ms-2">{{movie.media_type | title }}</span></p>
+                                    <p class="fw-light">{{ movie.release_date }} <span class="ms-2">{{movie.media_type | title }}</span>
+                                    </p>
                                     <p>{{ movie.overview }}</p>
                                     <div class="banner__buttons">
-                                        <button class="banner__button bg-danger">
-                                            <i class="fa-solid fa-play"></i>
-                                            Play
-                                        </button>
-                                        <button class="banner__button">
-                                            <i class="fa-solid fa-plus"></i>
-                                            My List
-                                        </button>
+                                        <a href="{% url 'play' movie.id %}">
+                                            <button class="banner__button bg-danger" type="button">
+                                                <i class="fa-solid fa-play"></i>
+                                                Play
+                                            </button>
+                                        </a>
+                                        <a href="">
+                                            <button class="banner__button" type="button">
+                                                <i class="fa-solid fa-plus"></i>
+                                                My List
+                                            </button>
+                                        </a>
                                     </div>
                                     <div class="mt-3 d-flex flex-column">
                                         <p>Rating: {{ movie.vote_average }}</p>
@@ -398,7 +436,7 @@ Netflix Clone
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn banner__button" data-bs-dismiss="modal">Close</button>
-                          </div>
+                        </div>
                     </div>
                 </div>
             </div>
