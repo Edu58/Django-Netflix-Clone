@@ -22,10 +22,22 @@
 </head>
 <body>
 <!-- nav -->
-<div id="nav" class="nav">
+<div id="nav" class="nav d-flex">
     <a href="{% url 'home' %}">
         <img class="nav__logo img-fluid" src="{% static 'images/Netflix.png' %}" alt=""/>
     </a>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+            <div class="input-group">
+                <input type="text" name="category" class="form-control bg-transparent text-light"
+                       placeholder="jurassic world">
+                <button class="btn search bg-danger" id="button-addon2" type="submit"><i
+                        class="fas fa-search text-light"></i>
+                </button>
+            </div>
+        </div>
+    </form>
 </div>
 
 
