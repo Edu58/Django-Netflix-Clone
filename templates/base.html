@@ -23,21 +23,35 @@
 <body>
 <!-- nav -->
 <div id="nav" class="nav d-flex">
+    {% if request.user.is_authenticated %}
     <a href="{% url 'home' %}">
         <img class="nav__logo img-fluid" src="{% static 'images/Netflix.png' %}" alt=""/>
     </a>
-    <form action="" method="post">
-        {% csrf_token %}
-        <div class="input-group mb-3">
-            <div class="input-group">
-                <input type="text" name="category" class="form-control bg-transparent text-light"
-                       placeholder="jurassic world">
-                <button class="btn search bg-danger" id="button-addon2" type="submit"><i
-                        class="fas fa-search text-light"></i>
-                </button>
+    <div class="d-flex align-items-center">
+        <form action="{% url 'search' %}" method="post">
+            {% csrf_token %}
+            <div class="input-group mb-3">
+                <div class="input-group">
+                    <input type="text" name="term" class="form-control bg-transparent text-light"
+                           placeholder="jurassic world">
+                    <button class="btn search bg-danger" id="button-addon2" type="submit"><i
+                            class="fas fa-search text-light"></i>
+                    </button>
+                </div>
             </div>
+        </form>
+    
+        <div class="profile ms-4">
+            <a href="{% url 'profile' %}" class="text-decoration-none">
+                <img src="https://ih0.redbubble.net/image.618427277.3222/flat,1000x1000,075,f.u2.jpg" id="profile" class="img-fluid">
+            </a>
         </div>
-    </form>
+    </div>
+    {% else %}
+    <a href="{% url 'home' %}">
+        <img class="nav__logo img-fluid" src="{% static 'images/Netflix.png' %}" alt=""/>
+    </a>
+    {% endif %}
 </div>
 
 
