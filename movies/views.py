@@ -6,6 +6,7 @@ import random
 from .forms import CreateUserForm, LoginUserForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 def registerPage(request):
     
@@ -19,7 +20,8 @@ def registerPage(request):
         
         if form.is_valid():
             form.save()
-            
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Account created for {username}')
             return redirect('login')
             
     return render(request, 'register.html', {'form': form})
