@@ -1,0 +1,50 @@
+{%extends 'base.html'%}
+{% load static %}
+
+{% block styles %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+{% endblock styles %}
+
+{% block title %}
+Register
+{% endblock %}
+
+{% block content %}
+    <div class="register d-flex justify-content-center flex-column align-items-center">
+        {% for message in messages %}
+        <div class="alert alert-success" role="alert">
+            {{message}}
+          </div>
+        {% endfor %}
+        <form method="post" class="px-5 py-4 text-light">
+            {% csrf_token %}
+            <p class="fs-3 text-light text-center">Sign Up</p>
+            <div class="mb-3 d-flex flex-column">
+                {{form.username.label}}
+                {{form.username}}
+              </div>
+            <div class="mb-3 d-flex flex-column">
+                {{form.email.label}}
+              {{form.email}}
+            </div>
+            <div class="mb-3 d-flex flex-column">
+                {{form.password1.label}}
+                {{form.password1}}
+            </div>
+            <div class="mb-3 d-flex flex-column">
+                {{form.password2.label}}
+                {{form.password2}}
+            </div>
+            <button type="submit" class="btn text-light w-100 mt-3">Sign Up</button>
+
+            <div class="mt-2 bg-warning rounded">
+                {{form.errors}}
+            </div>
+
+            <div class="mt-4">
+                <p>Already have an account? <a href="{% url 'login' %}" class="text-decoration-none">Login</a></p>
+            </div>
+        </form>
+    </div>
+{% endblock content %}

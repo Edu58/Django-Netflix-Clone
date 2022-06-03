@@ -1,0 +1,20 @@
+{%extends 'base.html'%}
+{% load static %}
+
+{% block title %}
+Profile
+{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center flex-column align-items-center min-vh-100">
+    <p class="fs-2 text-center text-light mb-4">Who's watching</p>
+    <img src="https://ih0.redbubble.net/image.618427277.3222/flat,1000x1000,075,f.u2.jpg" class="img-fluid" style="height: 8rem; width: 8rem;">
+    <p class="text-light fs-4 mt-1">{{ request.user.get_username }}</p>
+
+    <div>
+        <a href="{% url 'logout' %}" class="mt-3">
+            <button type="submit" class="btn btn-danger">Logout</button>
+        </a>
+    </div>
+</div>
+{% endblock content %}
