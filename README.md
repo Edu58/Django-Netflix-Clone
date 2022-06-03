@@ -38,8 +38,6 @@ localhost:8000. Once the server is running, open your browser and enter localhos
 preferred browser, and you should be able to use the app now. This will only work on the computer running the server. It
 is not available to anyone else. You should see something similar to the image below on clicking a single image.
 
-![Home](static/README%20IMAGES/modal.png)
-
 ## Deployment
 
 This project can be deployed for free on Heroku. Follow
